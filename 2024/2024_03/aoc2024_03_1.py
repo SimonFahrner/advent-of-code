@@ -11,7 +11,6 @@ def main():
         mults = re.findall(pattern, line)
 
         for mult in mults:
-            # extract the numbers by stripping the mul() and , then multiply the numbers
             num1, num2 = map(int, re.findall(r"\d+", mult))
             result += num1 * num2
     print(result)
