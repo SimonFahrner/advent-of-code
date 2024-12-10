@@ -1,22 +1,12 @@
-from aoc2024_02_utils import get_input
+from aoc2024_02_utils import get_input, is_monotonical, is_slow_changing
 
-def check_safety(reports):
-    number_of_safe_levels = 0
-    for report in reports:
-        if report == sorted(report) or report == sorted(report, reverse=True):
-            for i in range(0, len(report) - 1):
-                if not 1 <= abs(report[i] - report[i + 1]) <= 3:
-                    break
-            else:
-                number_of_safe_levels += 1
-            
-    return number_of_safe_levels
 
+def count_safe(reports):
+    return sum(1 for report in reports if is_monotonical(report) and is_slow_changing(report))
 
 def main():
     reports = get_input()
-    number_of_safe_levels = check_safety(reports)
-    print(number_of_safe_levels)
+    print(count_safe(reports))
 
 
 if __name__ == "__main__":
